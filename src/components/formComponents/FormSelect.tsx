@@ -28,6 +28,7 @@ const FormSelect: React.FC<IFormSelectProps> = ({
   wrapperProps = {},
   options,
 }) => {
+
   const theme = useTheme();
   const { setState } = useData() || {};
 
@@ -43,7 +44,7 @@ const FormSelect: React.FC<IFormSelectProps> = ({
         },
       }));
     }
-    console.log(name);
+
     if ((name === "interviewLanguage" || name == "interviewDuration" || name === "interviewMode") && setState) {
       setState((prevState) => ({
         ...prevState,
@@ -84,16 +85,21 @@ const FormSelect: React.FC<IFormSelectProps> = ({
             maxHeight: "none",
             minHeight: "none",
           }),
+          menu: (base) => ({
+            ...base,
+            position: "relative",
+            zIndex: 9999, // Adjust the z-index
+          }),
           control: (base, { isFocused }) => ({
             ...base,
             width: "100%",
             minWidth: "272px",
             height: "45px",
             border: isFocused
-              ? `1px solid ${theme.colors.primary}`
-              : error
-              ? `1px solid ${theme.colors.errorRed}`
-              : "1px solid #c0bcd7",
+            ? `1px solid ${theme.colors.primary}`
+            : error
+            ? `1px solid ${theme.colors.errorRed}`
+            : "1px solid #c0bcd7",
             backgroundColor: theme.colors.inputBg,
             borderRadius: "10px",
             fontSize: ".875rem",
