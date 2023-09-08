@@ -34,21 +34,22 @@ const FormSelect: React.FC<IFormSelectProps> = ({
   const handleChange = (value: any) => {
     onChange && onChange(name, value?.value);
     // Update the urgency value in DataProvider
-    if (name === "urgency" && setState) {
+    if ((name === "gender" || name == "urgency") && setState) {
       setState((prevState) => ({
         ...prevState,
         requisitionDetails: {
           ...prevState.requisitionDetails,
-          urgency: value?.value,
+          [name]: value?.value,
         },
       }));
     }
-    if (name === "gender" && setState) {
+    console.log(name);
+    if ((name === "interviewLanguage" || name == "interviewDuration" || name === "interviewMode") && setState) {
       setState((prevState) => ({
         ...prevState,
-        requisitionDetails: {
-          ...prevState.requisitionDetails,
-          gender: value?.value,
+        interviewSettings: {
+          ...prevState.interviewSettings,
+          [name]: value?.value,
         },
       }));
     }

@@ -66,6 +66,12 @@ const PreviewCard: React.FC<{
     jobLocation
   } = state?.jobDetails || {};
 
+  const {
+    interviewDuration,
+    interviewLanguage,
+    interviewMode
+  } = state?.interviewSettings || {};
+
   return (
     <Box p="1rem">
       <Box borderRadius="10px" bgColor="gray.100" height="fit-content">
@@ -138,7 +144,7 @@ const PreviewCard: React.FC<{
               title="Interview Duration"
               value={
                 interviewDurationOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewDuration
+                  (item) => item?.value === interviewDuration
                 )?.label
               }
             />
@@ -146,7 +152,7 @@ const PreviewCard: React.FC<{
               title="Interview Language"
               value={
                 interviewLanguageOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewLanguage
+                  (item) => item?.value === interviewLanguage
                 )?.label
               }
             />
@@ -154,7 +160,7 @@ const PreviewCard: React.FC<{
               title="Interview Mode"
               value={
                 interviewModeOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewMode
+                  (item) => item?.value === interviewMode
                 )?.label
               }
             />
