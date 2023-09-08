@@ -97,7 +97,7 @@ const PreviewCard: React.FC<{
                   OPENINGS
                 </Text>
                 <Text fontSize="1rem" fontWeight="bold" as="span">
-                  {requisitionDetails?.noOfOpenings}
+                  {noOfOpenings}
                 </Text>
               </Flex>
             </Flex>

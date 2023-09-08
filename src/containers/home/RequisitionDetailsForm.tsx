@@ -1,4 +1,4 @@
-import { Button, Flex, Box } from "@chakra-ui/react";
+import { Button, Flex, Box, SelectField } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import FormInput from "../../components/formComponents/FormInput";
 import FormSelect from "../../components/formComponents/FormSelect";
@@ -44,27 +44,26 @@ const RequisitionDetailsForm: React.FC<{
     },
   });
 
+  // Access the useData hook
   const { setState } = useData() || {};
 
-  const handleChangeRequisitionTitle = (
-    e: React.ChangeEvent<HTMLInputElement>
+  // Define a single onChange handler for all four fields
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-
-    // Update the requisitionTitle in the DataProvider context
+    setFieldValue(name, value);
     if (setState) {
       setState((prevState) => ({
         ...prevState,
         requisitionDetails: {
           ...prevState.requisitionDetails,
-          requisitionTitle: value,
+          [name]: value,
         },
       }));
     }
-
-    // Continue with Formik's handleChange
-    handleChange(e);
   };
+  
 
   return (
     <Box width="100%" as="form" onSubmit={handleSubmit as any}>
@@ -73,7 +72,7 @@ const RequisitionDetailsForm: React.FC<{
           label="Requisition Title"
           placeholder="Enter requisition title"
           name="requisitionTitle"
-          onChange={handleChangeRequisitionTitle}
+          onChange={handleInputChange}
           onBlur={handleBlur}
           value={values?.requisitionTitle}
           error={errors?.requisitionTitle}
@@ -83,7 +82,7 @@ const RequisitionDetailsForm: React.FC<{
           label="Number of openings"
           placeholder="Enter number of openings"
           name="noOfOpenings"
-          onChange={handleChange}
+          onChange={handleInputChange}
           onBlur={handleBlur}
           value={values?.noOfOpenings}
           error={errors?.noOfOpenings}
