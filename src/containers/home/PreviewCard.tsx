@@ -60,6 +60,12 @@ const PreviewCard: React.FC<{
     urgency,
   } = state?.requisitionDetails || {};
 
+  const {
+    jobTitle,
+    jobDetails: jobDetailsFromState,
+    jobLocation
+  } = state?.jobDetails || {};
+
   return (
     <Box p="1rem">
       <Box borderRadius="10px" bgColor="gray.100" height="fit-content">
@@ -123,9 +129,9 @@ const PreviewCard: React.FC<{
             />
           </DataCard>
           <DataCard title="Job Detail">
-            <KeyValue title="Job Title" value={jobDetails?.jobTitle} />
-            <KeyValue title="Job Details" value={jobDetails?.jobDetails} />
-            <KeyValue title="Job Location" value={jobDetails?.jobLocation} />
+            <KeyValue title="Job Title" value={jobTitle} />
+            <KeyValue title="Job Details" value={jobDetailsFromState} />
+            <KeyValue title="Job Location" value={jobLocation} />
           </DataCard>
           <DataCard title="Interview Settings">
             <KeyValue
